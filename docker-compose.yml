@@ -1,0 +1,35 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2.0.22-openssl
+    volumes:
+      - type: bind
+        source: ./mosquitto/
+        target: /mosquitto/config/
+  haproxy:
+    image: haproxy:local
+    build:
+      context: haproxy
+    command: ["haproxy", "-f", "/usr/local/etc/haproxy/haproxy.cfg"]
+    ports:
+      - 8883:8883
+      - 8000:8000
+    volumes:
+      - type: bind
+        source: /home/tf/.ssl/localhost/
+        target: /certs/
+        read_only: true
+      - type: bind
+        source: ./haproxy/haproxy.cfg
+        target: /usr/local/etc/haproxy/haproxy.cfg
+        read_only: true
+  influxdb:
+    image: influxdb:3.4.1-core
+    ports:
+      - 8181:8181
+    command:
+      - influxdb3
+      - serve
+      - --node-id=node0
+      - --object-store=file
+      - --data-dir=/var/lib/influxdb3/data
+      - --plugin-dir=/var/lib/influxdb3/plugins
