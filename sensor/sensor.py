@@ -1,20 +1,23 @@
 #!/usr/bin/env python
 """
-Simple simulation of a Sparkplug Edge Node with the ID edge-node-sensor-1. It interfaces
+Simple simulation of a Sparkplug Edge Node with the ID Edge_Node_Temperature_Sensor. It interfaces
 
-* One Device (sensor-1)
-* One Device Metric (x) of type double
+* One Device (Temperature_Sensor)
+* One Device Metric (Temperature) of type float
 
-The device is a sensor measuring the value x with a framerate of 10/s the the data is being published to a
-MQTT broker.
+The device is a sensor measuring the value of 'Temperature' with a framerate of 10/s and the data is being
+published to a MQTT broker.
 """
 
+import os
 import time
 import random
 import logging
 from pysparkplug_builder import SparkplugGroup
 
-logging.basicConfig(level=logging.DEBUG)
+LOG_LEVEL=os.environ.get("LOG_LEVEL", "INFO")
+logging.basicConfig(level=LOG_LEVEL)
+logger = logging.getLogger("sensor")
 
 def read_sensor(n: int = 100, fps: int = 10, value: float = 0.0):
     """
@@ -60,6 +63,7 @@ time.sleep(3)
 
 # Read sensor data
 for next_value in read_sensor():
+    logger.info("publishing metric %s=%s", metric_builder.name, next_value)
     metrics = [
             metric_builder.build_value(next_value)
     ]

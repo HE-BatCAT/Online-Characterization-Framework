@@ -1,1 +1,1 @@
-pysparkplug-builder @ git+ssh://git@github.com/HE-BatCAT/Pysparkplug-Builder.git@main
+pysparkplug-builder @ git+ssh://git@github.com/HE-BatCAT/Pysparkplug-Builder.git@v0.1.1

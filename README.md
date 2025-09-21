@@ -84,11 +84,11 @@ Run
 * All components will log verbosely what is happening.
 * Look at the output of the digital twin for a line that goes:
   ```
-  INFO:digital_twin_adapter:trigger switchOn False
+  INFO:digital_twin_adapter:######## Send command: Device_Control/Switch_On=False
   ```
 * Look at the output of the actuator for a line that goes:
   ```
-  ##################### SWITCH ON:  False
+  INFO:actuator:######## Received command: Device_Control/Switch_On=False
   ```
 
 ## Contact

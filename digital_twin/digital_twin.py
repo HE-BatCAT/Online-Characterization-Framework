@@ -8,10 +8,11 @@ import pysparkplug as psp
 from pysparkplug_builder import SparkplugGroup, settings as sparkplug_settings
 
 LOG_LEVEL=os.environ.get("LOG_LEVEL", "INFO")
-TEMPERATURE_THRESHOLD=os.environ.get("TEMPERATURE_THRESHOLD", "5.0")
-TEMPERATURE_THRESHOLD=abs(float(TEMPERATURE_THRESHOLD))
 logging.basicConfig(level=LOG_LEVEL)
 logger = logging.getLogger("digital_twin_adapter")
+
+TEMPERATURE_THRESHOLD=os.environ.get("TEMPERATURE_THRESHOLD", "5.0")
+TEMPERATURE_THRESHOLD=abs(float(TEMPERATURE_THRESHOLD))
 
 group = SparkplugGroup()
 server_id = group.default_server_id
@@ -80,11 +81,12 @@ class DigitalTwinFacade:
 
     def trigger_actuator(self, switch_on: bool):
         if self._state[settings.switch_on.name] != switch_on:
+            logger.info("Received %s=%s, this triggers the command", settings.switch_on.name, switch_on)
             self._state[settings.switch_on.name] = switch_on
             self.priority_executor.submit(self._trigger_actuator, switch_on)
 
     def _trigger_actuator(self, switch_on: bool):
-        logger.info("trigger switchOn %s", str(switch_on))
+        logger.info("######## Send command: %s=%s", settings.switch_on.name, switch_on)
 
         try:
             metrics = (

@@ -1,22 +1,21 @@
 #!/usr/bin/env python
 """
-Simple simulation of a Sparkplug Edge Node with the ID edge-node-actuator-1. It interfaces
+Simple simulation of a Sparkplug Edge Node with the ID Edge_Node_Power_Switch. It interfaces
 
-* One Device (actuator-1)
-* One Device Metric (y) of type boolean.
+* One Device (Power_Switch)
+* One Device Metric (Device_Control/Switch_On) of type boolean.
 
-The device is an actuator which can be controlled with the y metric. This could be the device being switched
-on or off. This Edge Node subscribes to an MQTT broker.
-
-This Edge Node will accept command from the Primary Host Application "digital-twin" only.
+This Edge Node subscribes to an MQTT broker.
 """
-
+import os
 import time
 import logging
 import pysparkplug as psp
 from pysparkplug_builder import SparkplugGroup
 
-logging.basicConfig(level=logging.DEBUG)
+LOG_LEVEL=os.environ.get("LOG_LEVEL", "INFO")
+logging.basicConfig(level=LOG_LEVEL)
+logger = logging.getLogger("actuator")
 
 
 # Load definition of the sparkplug group from a file. The location of the config file is given by the
@@ -31,22 +30,20 @@ metric_builder = edge_node_builder.devices["Power_Switch"].metrics["Device_Contr
 
 @edge_node_builder.devices["Power_Switch"].listener("Device_Control/Switch_On", psp.MessageType.DCMD)
 def handle_switch_command(value):
-    print("##################### SWITCH ON: ", value)
+    logger.info("######## Received command: %s=%s", metric_builder.name, value)
 
     # return new state -> get's published such that the whole network knows about it and is a way of
     # confirming the state change to the issuer of the command
     return value
 
-# This handles the command message
-@edge_node_builder.devices["Power_Switch"].cmd_callback
-def callback(client: psp.Client, message: psp.Message) -> None:
-    print("message", message)
-
-
 # set initial state
 edge_node_builder.devices["Power_Switch"].metrics["Device_Control/Switch_On"].value = True
 
+
 edge_node = edge_node_builder.build()
+logger.info("Initial value %s=%s",
+    edge_node_builder.devices["Power_Switch"].metrics["Device_Control/Switch_On"].name,
+    edge_node_builder.devices["Power_Switch"].metrics["Device_Control/Switch_On"].value)
 try:
     edge_node.connect(blocking=True)
 except KeyboardInterrupt:
