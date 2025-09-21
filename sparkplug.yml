@@ -1,0 +1,49 @@
+metrics:
+  - &temperature
+    name: "Temperature"
+    description: "This is the measured temperature"
+    datatype: Float
+    is_null: True
+  - &switchOn
+    name: "Device_Control/Switch_On"
+    description: "Whether the device is switched on or not. False means the device is off or should be switched off. Null means the power switch state is not known"
+    datatype: Boolean
+    is_null: True
+sparkplug:
+  namespace: spBv1.0
+  version: 0.1.0
+  title: "BatCAT Test Case of the Online Characterization"
+  description: "This is a simple test case containing only one application, two edge nodes with only one device each."
+  group_id: "batcat-testbed-1-v0.1"
+  default_server_id: local-testing
+  servers:
+    - server_id: local-testing
+      host: localhost
+      port: 1883
+  host_applications:
+    - sparkplug_host_id: digital-twin
+  edge_nodes:
+    - edge_node_id: "Edge_Node_Temperature_Sensor"
+      title: "Edge Node Temperature Sensor"
+      description: "An edge node with only one device, a temperature sensor"
+      devices:
+        - device_id: "Temperature_Sensor"
+          title: "Temperature Sensor"
+          description: "This is a temperature sensor"
+          metrics:
+            - *temperature
+    - edge_node_id: "Edge_Node_Power_Switch"
+      title: "Edge Node Power Switch"
+      description: "An edge node with only one device, a power switch"
+      primary_host_application: "Digital_Twin"
+      devices:
+        - device_id: "Power_Switch"
+          title: "Power Switch"
+          description: "This is a power switch (on/off)"
+          commands:
+            - *switchOn
+
+
+
+
+
