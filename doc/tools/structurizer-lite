@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+PORT="${PORT:-"8081"}"
+
+echo "Open structurizr-lite at: http://localhost:$PORT"
+docker run -it --rm -p "${PORT}:8080" -v "$PWD/src:/usr/local/structurizr" structurizr/lite

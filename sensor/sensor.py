@@ -19,7 +19,7 @@ LOG_LEVEL=os.environ.get("LOG_LEVEL", "INFO")
 logging.basicConfig(level=LOG_LEVEL)
 logger = logging.getLogger("sensor")
 
-def read_sensor(n: int = 100, fps: int = 10, value: float = 0.0):
+def read_sensor(n: int = 100000, fps: int = 1, value: float = 25.0):
     """
     Simulates reading values from a sensor.
 
@@ -42,7 +42,7 @@ def read_sensor(n: int = 100, fps: int = 10, value: float = 0.0):
     for _ in range(n):
         yield _value
         time.sleep(1 / fps)
-        _value += random.gauss(mu=0, sigma=1)
+        _value += random.gauss(mu=-_value/10, sigma=value/5)
 
 
 # Load definition of the sparkplug group from a file. The location of the config file is given by the
@@ -62,16 +62,20 @@ metric_builder = edge_node_builder.devices["Temperature_Sensor"].metrics["Temper
 time.sleep(3)
 
 # Read sensor data
-for next_value in read_sensor():
-    logger.info("publishing metric %s=%s", metric_builder.name, next_value)
-    metrics = [
-            metric_builder.build_value(next_value)
-    ]
+try:
+    for next_value in read_sensor():
+        logger.info("publishing metric %s=%s", metric_builder.name, next_value)
+        metrics = [
+                metric_builder.build_value(next_value)
+        ]
 
-    # send data
-    edge_node.update_device("Temperature_Sensor", metrics)
+        # send data
+        edge_node.update_device("Temperature_Sensor", metrics)
 
 
-# clean up
-edge_node.deregister("Temperature_Sensor")
-edge_node.disconnect()
+    # clean up
+except KeyboardInterrupt:
+    pass
+finally:
+    edge_node.deregister("Temperature_Sensor")
+    edge_node.disconnect()

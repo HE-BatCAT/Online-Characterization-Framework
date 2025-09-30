@@ -1,0 +1,7 @@
+#!/bin/sh
+
+FORMAT="${FORMAT:-"plantuml/c4plantuml"}"
+OUTPUT="${OUTPUT:-"$PWD/export"}"
+_UID=${UID:-0}
+mkdir -p $OUTPUT
+docker run -u "${_UID}:${_UID}" -it --rm -v "$OUTPUT:/tmp/output" -v "$PWD/src:/usr/local/structurizr" structurizr/cli export -workspace workspace.dsl -format "$FORMAT" -output "/tmp/output"

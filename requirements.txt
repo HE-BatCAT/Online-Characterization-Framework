@@ -1,1 +1,2 @@
-pysparkplug-builder @ git+ssh://git@github.com/HE-BatCAT/Pysparkplug-Builder.git@v0.1.1
+pysparkplug-builder @ git+ssh://git@github.com/HE-BatCAT/Pysparkplug-Builder.git@v0.2.0
+influxdb-client==1.49.0

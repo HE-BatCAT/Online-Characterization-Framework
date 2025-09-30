@@ -7,3 +7,59 @@ services:
         target: /mosquitto/config/
     ports:
       - 1883:1883
+  telegraf:
+    image: telegraf:1.34.4-alpine
+    ports:
+      - "8184:8184"
+    volumes:
+      - type: bind
+        source: ./telegraf/telegraph.conf
+        target: /etc/telegraf/telegraf.conf
+        read_only: true
+      - type: bind
+        source: ./telegraf/sparkplug_b.proto
+        target: /etc/telegraf/sparkplug_b.proto
+        read_only: true
+  influxdb:
+    image: influxdb:3.4.1-core
+    ports:
+      - 8181:8181
+    command:
+      - influxdb3
+      - serve
+      - --disable-telemetry-upload
+      - --node-id=node0
+      - --object-store=file
+      - --data-dir=/var/lib/influxdb3/data
+      - --plugin-dir=/var/lib/influxdb3/plugins
+      - --without-auth
+  influxdb-setup:
+    image: influxdb:3.4.1-core
+    command:
+      - influxdb3
+    depends_on:
+      - influxdb
+    restart: "no"
+    entrypoint: ["/setup.sh"]
+    volumes:
+      - type: bind
+        source: influxdb/setup.sh
+        target: /setup.sh
+        read_only: true
+    environment:
+      INFLUXDB_URL: "http://influxdb:8181"
+      DATABASE_NAME: "BatCAT"
+  influxdb-ui:
+    image: influxdata/influxdb3-ui:1.2.1
+    command: ["--mode=admin"]
+    ports:
+      - 8182:80
+    environment:
+      DEFAULT_INFLUX_SERVER: "http://influxdb:8181"
+      DEFAULT_DATABASE: "BatCAT"
+      DEFAULT_API_TOKEN: "NONE"
+      DEFAULT_SERVER_NAME: "InfluxDB"
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"

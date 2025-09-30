@@ -1,0 +1,1062 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 0,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "influxdb"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "fieldMinMax": false,
+          "mappings": [
+            {
+              "options": {
+                "false": {
+                  "color": "dark-red",
+                  "index": 3,
+                  "text": "Off"
+                },
+                "offline": {
+                  "color": "dark-red",
+                  "index": 1,
+                  "text": "offline"
+                },
+                "online": {
+                  "color": "dark-green",
+                  "index": 0,
+                  "text": "online"
+                },
+                "true": {
+                  "color": "dark-green",
+                  "index": 2,
+                  "text": "On"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "yellow",
+                "value": 5
+              },
+              {
+                "color": "red",
+                "value": 10
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 8,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "inlineEditing": true,
+        "panZoom": false,
+        "root": {
+          "background": {
+            "color": {
+              "fixed": "transparent"
+            },
+            "image": {
+              "field": "",
+              "fixed": "",
+              "mode": "fixed"
+            }
+          },
+          "border": {
+            "color": {
+              "fixed": "dark-green"
+            }
+          },
+          "constraint": {
+            "horizontal": "left",
+            "vertical": "top"
+          },
+          "elements": [
+            {
+              "background": {
+                "color": {
+                  "field": "Last_Temperature",
+                  "fixed": "#D9D9D9"
+                },
+                "image": {
+                  "field": "Last_Temperature",
+                  "fixed": "",
+                  "mode": "field"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 20,
+                "text": {
+                  "field": "Last_Temperature",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Temperature",
+              "placement": {
+                "height": 50,
+                "left": 73,
+                "top": 114,
+                "width": 105
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "fill": {
+                  "field": "edge_node_temperature_sensort",
+                  "fixed": "#D9D9D9"
+                },
+                "path": {
+                  "fixed": "img/icons/unicons/server-alt.svg",
+                  "mode": "fixed"
+                }
+              },
+              "connections": [
+                {
+                  "color": {
+                    "fixed": "rgb(204, 204, 220)"
+                  },
+                  "path": "straight",
+                  "size": {
+                    "fixed": 2,
+                    "max": 10,
+                    "min": 1
+                  },
+                  "source": {
+                    "x": 1,
+                    "y": 0
+                  },
+                  "sourceOriginal": {
+                    "x": 502,
+                    "y": 139
+                  },
+                  "target": {
+                    "x": -1.02,
+                    "y": 0.4
+                  },
+                  "targetName": "DT",
+                  "targetOriginal": {
+                    "x": 612,
+                    "y": 201
+                  }
+                },
+                {
+                  "color": {
+                    "fixed": "rgb(204, 204, 220)"
+                  },
+                  "path": "straight",
+                  "size": {
+                    "fixed": 2,
+                    "max": 10,
+                    "min": 1
+                  },
+                  "source": {
+                    "x": -1,
+                    "y": 0
+                  },
+                  "sourceOriginal": {
+                    "x": 402,
+                    "y": 139
+                  },
+                  "target": {
+                    "x": 0.9,
+                    "y": 0.02
+                  },
+                  "targetName": "The Sensor",
+                  "targetOriginal": {
+                    "x": 325,
+                    "y": 138
+                  }
+                }
+              ],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "EdgeNode Sensor",
+              "placement": {
+                "height": 100,
+                "left": 402,
+                "top": 89,
+                "width": 100
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "fill": {
+                  "field": "temperature_sensor",
+                  "fixed": "#D9D9D9"
+                },
+                "path": {
+                  "fixed": "img/icons/unicons/temperature-half.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "The Sensor",
+              "placement": {
+                "height": 100,
+                "left": 230,
+                "top": 89,
+                "width": 100
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "fill": {
+                  "field": "edge_node_power_switch",
+                  "fixed": "#D9D9D9"
+                },
+                "path": {
+                  "fixed": "img/icons/unicons/server-alt.svg",
+                  "mode": "fixed"
+                }
+              },
+              "connections": [
+                {
+                  "color": {
+                    "fixed": "rgb(204, 204, 220)"
+                  },
+                  "path": "straight",
+                  "size": {
+                    "fixed": 2,
+                    "max": 10,
+                    "min": 1
+                  },
+                  "source": {
+                    "x": -1,
+                    "y": 0
+                  },
+                  "sourceOriginal": {
+                    "x": 402,
+                    "y": 306
+                  },
+                  "target": {
+                    "x": 0.98,
+                    "y": -0.02
+                  },
+                  "targetName": "Switch",
+                  "targetOriginal": {
+                    "x": 329,
+                    "y": 307
+                  }
+                }
+              ],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "EdgeNode Switch",
+              "placement": {
+                "height": 100,
+                "left": 402,
+                "top": 256,
+                "width": 100
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "fill": {
+                  "field": "device_power_switch",
+                  "fixed": "#D9D9D9"
+                },
+                "path": {
+                  "fixed": "img/icons/unicons/power.svg",
+                  "mode": "fixed"
+                }
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Switch",
+              "placement": {
+                "height": 100,
+                "left": 230,
+                "top": 256,
+                "width": 100
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "on",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 20,
+                "text": {
+                  "field": "on",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Power",
+              "placement": {
+                "height": 50,
+                "left": 73,
+                "rotation": 0,
+                "top": 281,
+                "width": 100
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "rgb(204, 204, 220)"
+                },
+                "size": 16,
+                "text": {
+                  "fixed": "Sensor"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 7",
+              "placement": {
+                "height": 50,
+                "left": 230,
+                "top": 171,
+                "width": 100
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "rgb(204, 204, 220)"
+                },
+                "size": 16,
+                "text": {
+                  "fixed": "Power Switch"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 8",
+              "placement": {
+                "height": 50,
+                "left": 219,
+                "top": 331,
+                "width": 123
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "rgb(204, 204, 220)"
+                },
+                "size": 16,
+                "text": {
+                  "fixed": "Edge Nodes"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 9",
+              "placement": {
+                "height": 50,
+                "left": 402,
+                "top": 39,
+                "width": 100
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "rgb(204, 204, 220)"
+                },
+                "size": 16,
+                "text": {
+                  "fixed": "Devices"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 10",
+              "placement": {
+                "height": 50,
+                "left": 230,
+                "rotation": 0,
+                "top": 39,
+                "width": 100
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "rgb(204, 204, 220)"
+                },
+                "size": 16,
+                "text": {
+                  "fixed": "Temperature"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 11",
+              "placement": {
+                "height": 50,
+                "left": 76,
+                "rotation": 0,
+                "top": 171,
+                "width": 100
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "fill": {
+                  "fixed": "green"
+                },
+                "path": {
+                  "fixed": "img/icons/unicons/circuit.svg",
+                  "mode": "fixed"
+                }
+              },
+              "connections": [
+                {
+                  "color": {
+                    "fixed": "rgb(204, 204, 220)"
+                  },
+                  "path": "straight",
+                  "size": {
+                    "fixed": 2,
+                    "max": 10,
+                    "min": 1
+                  },
+                  "source": {
+                    "x": -1,
+                    "y": -0.5
+                  },
+                  "sourceOriginal": {
+                    "x": 613,
+                    "y": 246
+                  },
+                  "target": {
+                    "x": 1.08,
+                    "y": 0
+                  },
+                  "targetName": "EdgeNode Switch",
+                  "targetOriginal": {
+                    "x": 506,
+                    "y": 306
+                  }
+                }
+              ],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "DT",
+              "placement": {
+                "height": 100,
+                "left": 613,
+                "rotation": 0,
+                "top": 171,
+                "width": 100
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "rgb(204, 204, 220)"
+                },
+                "size": 16,
+                "text": {
+                  "fixed": "DT"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 13",
+              "placement": {
+                "height": 50,
+                "left": 613,
+                "rotation": 0,
+                "top": 246,
+                "width": 100
+              },
+              "type": "text"
+            }
+          ],
+          "name": "Element 1759088017388",
+          "placement": {
+            "height": 100,
+            "left": 0,
+            "rotation": 0,
+            "top": 0,
+            "width": 100
+          },
+          "type": "frame"
+        },
+        "showAdvancedTypes": true,
+        "tooltip": {
+          "disableForOneClick": false,
+          "mode": "single"
+        },
+        "zoomToContent": false
+      },
+      "pluginVersion": "12.2.0",
+      "targets": [
+        {
+          "alias": "edge_node_power_switch",
+          "groupBy": [],
+          "hide": false,
+          "limit": "1",
+          "measurement": "status",
+          "orderByTime": "DESC",
+          "policy": "default",
+          "query": "SELECT \"status\" FROM \"status\" WHERE (\"endi\"::tag = 'Edge_Node_Power_Switch') ORDER BY time DESC LIMIT 1",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "logs",
+          "select": [
+            [
+              {
+                "params": [
+                  "status"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "endi::tag",
+              "operator": "=",
+              "value": "Edge_Node_Power_Switch"
+            }
+          ]
+        },
+        {
+          "alias": "device_power_switch",
+          "datasource": {
+            "type": "influxdb"
+          },
+          "groupBy": [],
+          "hide": false,
+          "limit": "1",
+          "measurement": "status",
+          "orderByTime": "DESC",
+          "policy": "default",
+          "query": "SELECT \"status\" FROM \"status\" WHERE (\"endi\"::tag = 'Edge_Node_Power_Switch.Power_Switch') ORDER BY time DESC LIMIT 1",
+          "rawQuery": true,
+          "refId": "B",
+          "resultFormat": "logs",
+          "select": [
+            [
+              {
+                "params": [
+                  "status"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "endi::tag",
+              "operator": "=",
+              "value": "Edge_Node_Power_Switch.Power_Switch"
+            }
+          ]
+        },
+        {
+          "alias": "edge_node_temperature_sensort",
+          "datasource": {
+            "type": "influxdb"
+          },
+          "groupBy": [],
+          "hide": false,
+          "limit": "1",
+          "measurement": "status",
+          "orderByTime": "DESC",
+          "policy": "default",
+          "query": "SELECT \"status\" FROM \"status\" WHERE (\"endi\"::tag = 'Edge_Node_Temperature_Sensor') ORDER BY time DESC LIMIT 1",
+          "rawQuery": true,
+          "refId": "C",
+          "resultFormat": "logs",
+          "select": [
+            [
+              {
+                "params": [
+                  "status"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "endi::tag",
+              "operator": "=",
+              "value": "Edge_Node_Temperature_Sensor"
+            }
+          ]
+        },
+        {
+          "alias": "temperature_sensor",
+          "datasource": {
+            "type": "influxdb"
+          },
+          "groupBy": [],
+          "hide": false,
+          "limit": "1",
+          "measurement": "status",
+          "orderByTime": "DESC",
+          "policy": "default",
+          "query": "SELECT \"status\" FROM \"status\" WHERE (\"endi\"::tag = 'Edge_Node_Temperature_Sensor.Temperature_Sensor') ORDER BY time DESC LIMIT 1",
+          "rawQuery": true,
+          "refId": "D",
+          "resultFormat": "logs",
+          "select": [
+            [
+              {
+                "params": [
+                  "status"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "endi::tag",
+              "operator": "=",
+              "value": "Edge_Node_Temperature_Sensor.Temperature_Sensor"
+            }
+          ]
+        },
+        {
+          "alias": "Last_Temperature",
+          "datasource": {
+            "type": "influxdb"
+          },
+          "groupBy": [],
+          "hide": false,
+          "limit": "1",
+          "measurement": "measurement",
+          "orderByTime": "DESC",
+          "policy": "default",
+          "query": "SELECT \"Temperature\" FROM \"measurement\" ORDER BY time DESC LIMIT 1",
+          "rawQuery": true,
+          "refId": "E",
+          "resultFormat": "logs",
+          "select": [
+            [
+              {
+                "params": [
+                  "Temperature"
+                ],
+                "type": "field"
+              }
+            ]
+          ]
+        },
+        {
+          "alias": "on",
+          "datasource": {
+            "type": "influxdb"
+          },
+          "groupBy": [],
+          "hide": false,
+          "limit": "1",
+          "measurement": "cmd",
+          "orderByTime": "DESC",
+          "policy": "default",
+          "query": "SELECT \"on\" FROM \"cmd\" ORDER BY time DESC LIMIT 1",
+          "rawQuery": true,
+          "refId": "F",
+          "resultFormat": "logs",
+          "select": [
+            [
+              {
+                "params": [
+                  "on"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "title": "Sparkplug Group: Overview",
+      "type": "canvas"
+    },
+    {
+      "datasource": {
+        "type": "influxdb"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 16,
+        "x": 8,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb"
+          },
+          "groupBy": [],
+          "measurement": "measurement",
+          "orderByTime": "ASC",
+          "policy": "BatCAT",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "Temperature"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "datasource": {
+            "type": "influxdb"
+          },
+          "groupBy": [],
+          "hide": false,
+          "measurement": "cmd",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "on"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "title": "Temperature",
+      "type": "timeseries"
+    }
+  ],
+  "preload": false,
+  "refresh": "5s",
+  "schemaVersion": 42,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "BatCAT Testbed",
+  "uid": "adfs6xg",
+  "version": 12
+}

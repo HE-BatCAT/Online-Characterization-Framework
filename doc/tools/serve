@@ -1,0 +1,4 @@
+##!/usr/bin/bash
+
+PORT="${PORT:-"8080"}"
+docker run -v "$PWD/src:/var/model" -p "${PORT}:8080" -it --rm ghcr.io/avisi-cloud/structurizr-site-generatr:1.5.2 serve -w workspace.dsl -s /home/generatr/build/serve --assets-dir assets

@@ -1,0 +1,1 @@
+../../assets/templates/000X_adr_template.md

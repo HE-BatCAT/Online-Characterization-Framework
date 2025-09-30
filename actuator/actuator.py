@@ -49,4 +49,5 @@ try:
 except KeyboardInterrupt:
     pass
 finally:
+    edge_node.deregister("Power_Switch")
     edge_node.disconnect()

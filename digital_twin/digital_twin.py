@@ -11,8 +11,11 @@ LOG_LEVEL=os.environ.get("LOG_LEVEL", "INFO")
 logging.basicConfig(level=LOG_LEVEL)
 logger = logging.getLogger("digital_twin_adapter")
 
-TEMPERATURE_THRESHOLD=os.environ.get("TEMPERATURE_THRESHOLD", "5.0")
-TEMPERATURE_THRESHOLD=abs(float(TEMPERATURE_THRESHOLD))
+TEMPERATURE_THRESHOLD_OFF=os.environ.get("TEMPERATURE_THRESHOLD_OFF", "48.0")
+TEMPERATURE_THRESHOLD_ON=os.environ.get("TEMPERATURE_THRESHOLD_ON", "42.5")
+TEMPERATURE_THRESHOLD_OFF=abs(float(TEMPERATURE_THRESHOLD_OFF))
+TEMPERATURE_THRESHOLD_ON=abs(float(TEMPERATURE_THRESHOLD_ON))
+
 
 group = SparkplugGroup()
 server_id = group.default_server_id
@@ -74,8 +77,10 @@ class DigitalTwinFacade:
                 metric = self._get_metric_by_name(message, settings.temperature.name)
                 if metric is not None and not metric.is_null:
                     logger.debug(metric.value)
-                    if abs(metric.value) > TEMPERATURE_THRESHOLD:
+                    if abs(metric.value) >= TEMPERATURE_THRESHOLD_OFF:
                         self.trigger_actuator(False)
+                    elif abs(metric.value) <= TEMPERATURE_THRESHOLD_ON:
+                        self.trigger_actuator(True)
             except ValueError:
                 logger.warning("could not parse payload as float")
 

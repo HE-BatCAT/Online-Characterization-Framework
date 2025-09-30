@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+PORT="${PORT:-"8082"}"
+
+echo "Open plantuml webui at: http://localhost:$PORT"
+docker run -p "${PORT}:8080" plantuml/plantuml-server:jetty
