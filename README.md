@@ -7,6 +7,8 @@ SPDX-License-Identifier: MIT
 
 # Testbed of the BatCAT Online Characterization Framework
 
+See a video demonstration on youtube: https://youtu.be/OiTLQB4YK3Y
+
 ## Requirements
 
 This was tested with the following configuration
